@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Diabetes Risk Prediction using Machine Learning</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Add some basic styling */
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      background-color: #f5f5f5;
+    }
+    .slide {
+      background-color: white;
+      padding: 40px;
+      margin-bottom: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .slide h1, .slide h2, .slide h3 {
+      color: #2c3e50;
+    }
+    .slide p {
+      line-height: 1.6;
+    }
+    .slide table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    .slide th, .slide td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    .slide th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <div class="slide">
+    <h1>Diabetes Risk Prediction using Machine Learning</h1>
+    <p>Uzair Sunkad</p>
+    <p>11-11-2024</p>
+    <p>RV University</p>
+  </div>
+
+  <div class="slide">
+    <h2>Agenda</h2>
+    <ul>
+      <li>Introduction</li>
+      <li>Data Overview</li>
+      <li>Data Preprocessing</li>
+      <li>Exploratory Data Analysis (EDA)</li>
+      <li>Modeling Approach</li>
+      <li>Model Performance</li>
+      <li>Key Findings and Interpretation</li>
+      <li>Conclusion and Future Work</li>
+    </ul>
+  </div>
+
+  <div class="slide">
+    <h2>Introduction</h2>
+    <p>Diabetes is a significant and growing health issue globally, with an increasing number of individuals diagnosed each year. This chronic condition can lead to severe complications, making early detection essential. The goal of this project is to utilize machine learning techniques to predict the likelihood of an individual developing diabetes, enabling early interventions and improving the management of this disease.</p>
+  </div>
+
+  <div class="slide">
+    <h2>Data Overview</h2>
+    <h3>Dataset Summary</h3>
+    <ul>
+      <li>Number of Rows: 768</li>
+      <li>Number of Columns: 9</li>
+      <li>Features: Pregnancies, Glucose, BloodPressure, SkinThickness, Insulin, BMI, DiabetesPedigreeFunction, Age</li>
+      <li>Target Variable: Outcome (0 = not diabetic, 1 = diabetic)</li>
+    </ul>
+    <h3>Data Sample</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Pregnancies</th>
+          <th>Glucose</th>
+          <th>BloodPressure</th>
+          <th>SkinThickness</th>
+          <th>Insulin</th>
+          <th>BMI</th>
+          <th>DiabetesPedigreeFunction</th>
+          <th>Age</th>
+          <th>Outcome</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>89</td>
+          <td>66</td>
+          <td>23</td>
+          <td>94</td>
+          <td>28.1</td>
+          <td>0.167</td>
+          <td>21</td>
+          <td>0</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="slide">
+    <h2>Data Preprocessing</h2>
+    <h3>Data Cleaning</h3>
+    <ul>
+      <li>Handled missing values by imputing median values</li>
+      <li>Removed any duplicate records</li>
+      <li>Detected and addressed outliers in features like Glucose and BloodPressure</li>
+    </ul>
+    <h3>Feature Engineering</h3>
+    <ul>
+      <li>Created a 'BMI Category' feature to group BMI values</li>
+      <li>Binned the 'Age' feature into ranges</li>
+    </ul>
+    <h3>Feature Selection</h3>
+    <ul>
+      <li>Performed correlation analysis to identify and remove redundant features</li>
+      <li>Conducted univariate analysis to confirm the significance of each feature in predicting diabetes risk</li>
+    </ul>
+  </div>
+
+  <div class="slide">
+    <h2>Exploratory Data Analysis (EDA)</h2>
+    <h3>Key Visualizations</h3>
+    <div style="display: flex; justify-content: space-between;">
+      <div>
+        <img src="media/image11.png" alt="Histogram" style="max-width: 100%;">
+        <p style="text-align: center; color: #666;">Histogram of Glucose Levels</p>
+      </div>
+      <div>
+        <img src="media/image9.png" alt="Correlation Heatmap" style="max-width: 100%;">
+        <p style="text-align: center; color: #666;">Correlation Heatmap</p>
+      </div>
+    </div>
+    <h3>Insights</h3>
+    <ul>
+      <li>Glucose levels have a positive relationship with the target variable 'Outcome'</li>
+      <li>Age and BMI also appear to be important factors in predicting diabetes risk</li>
+      <li>Some features, such as Glucose and BloodPressure, exhibit skewed distributions</li>
+    </ul>
+  </div>
+
+  <div class="slide">
+    <h2>Modeling Approach</h2>
+    <h3>Model Selection</h3>
+    <p>A Decision Tree Classifier was chosen for this classification problem. Decision Trees are capable of handling both numerical and categorical features, and they provide interpretable results, making them a suitable choice for this healthcare-related task.</p>
+    <h3>Training and Validation</h3>
+    <p>The dataset was split into training and test sets, with around 70-80% of the data used for training and the remaining 20-30% for testing. This approach ensures an unbiased evaluation of the model's performance.</p>
+    <h3>Hyperparameter Tuning</h3>
+    <p>To address the issue of overfitting, hyperparameter tuning was performed using a grid search approach. The key hyperparameters adjusted were 'max_depth' and 'min_samples_leaf', which helped to improve the model's generalization ability.</p>
+  </div>
+
+  <div class="slide">
+    <h2>Model Performance</h2>
+    <h3>Evaluation Metrics</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Training</th>
+          <th>Test</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Accuracy</td>
+          <td>83.43%</td>
+          <td>72.73%</td>
+        </tr>
+        <tr>
+          <td>Precision</td>
+          <td>0.840</td>
+          <td>0.732</td>
+        </tr>
+        <tr>
+          <td>Recall</td>
+          <td>0.834</td>
+          <td>0.727</td>
+        </tr>
+        <tr>
+          <td>F1 Score</td>
+          <td>0.836</td>
+          <td>0.729</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>Visualizations</h3>
+    <div style="display: flex; justify-content: space-between;">
+      <div>
+        <img src="media/image6.png" alt="Confusion Matrix" style="max-width: 100%;">
+        <p style="text-align: center; color: #666;">Confusion Matrix</p>
+      </div>
+      <div>
+        <img src="media/image2.png" alt="ROC Curve" style="max-width: 100%;">
+        <p style="text-align: center; color: #666;">ROC Curve</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide">
+    <h2>Key Findings and Interpretation</h2>
+    <h3>Main Results</h3>
+    <ul>
+      <li>Glucose, Age, and BMI are the most significant factors in predicting diabetes risk, with Glucose being the most influential feature</li>
+      <li>The Decision Tree model was able to categorize individuals into Lower Risk and Higher Risk profiles based on these features, although it struggled when Age or BMI played a more critical role than Glucose levels</li>
+    </ul>
+    <h3>Practical Implications</h3>
+    <p>These findings can help healthcare providers and businesses in the health sector target at-risk populations, particularly among middle-aged and overweight women. Early identification of high-risk patients could lead to timely interventions, reducing the long-term impact of diabetes and associated healthcare costs.</p>
+  </div>
+
+  <div class="slide">
+    <h2>Conclusion and Future Work</h2>
+    <h3>Summary</h3>
+    <p>This project successfully identified key factors, including Glucose, Age, and BMI, that contribute to predicting diabetes risk, with Glucose being the most influential feature. The Decision Tree model, after hyperparameter tuning, improved its generalization ability, but faced challenges in cases where Age or BMI played a more significant role than Glucose.</p>
+    <h3>Future Improvements</h3>
+    <ul>
+      <li>Explore more advanced models, such as Random Forest or Gradient Boosting, to improve performance</li>
+      <li>Enhance feature engineering to better capture the relationships between variables and address misclassifications</li>
+      <li>Expand the dataset to improve model generalization across different populations</li>
+      <li>Conduct further hyperparameter tuning to optimize the model's ability to balance precision and recall</li>
+    </ul>
+  </div>
+</body>
+</html>
