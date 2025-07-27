@@ -38,4 +38,4 @@ Author
 Uzair Sunkad
 
 License
-This project is licensed under the MIT License.
+This project is licensed under the License.
